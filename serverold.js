@@ -1,21 +1,16 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
 
-const port = process.env.PORT || 5000;
+
+
+
+
 const server = express();
 
 const db = require('./data/db.js');
 
-server.use(cors({}));
-server.use(bodyParser.json());
 
-server.listen(port, err => {
-    if (err) {
-        console.log(err);
-    }
-    console.log(`Server Started on ${port}`)
-})
+
+
+
 
 //Home====================================================================================================//
 server.get('/', (req, res) => {
