@@ -18,9 +18,7 @@ const app = express();
 
 const mongoDB = "mongodb://nalee:superman1@ds139920.mlab.com:39920/noteex";
     
-mongoose.connect(mongoDB, {
-    useMongoClient: true
-});
+mongoose.connect(mongoDB);
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
