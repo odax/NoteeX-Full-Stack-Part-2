@@ -57,22 +57,25 @@ const NoteController = {
 },
 
 //note update, update note/note contents==============================================================//
-updateNote: function(req, res) {
-    const { id } = req.params;
-    const update = req.body;
-
-    db.update(id, update)
-        .then(count => {
-            if (count > 0) {
-                res.status(200).json({ msg: 'note updated successfully' })
-            } else {
-                res.status(404).json({ msg: 'note not found' });
-            }
-        })
+updateNote: (req, res) => {
+        const id = req.params.id;
+        const update = req.body;
+        const options = {
+          new: true
+        };
+        Note.findByIdAndUpdate(id, update, options)
+        .then( note =>
+            // note => {
+            // if (!note) {
+            //   res.status(404).json({ message: "The note with the specified ID does not exist."})
+            // }
+              res.status(200).json(note)
+            // }
+        )
         .catch(err => {
-            res.status(500).json(err)
+          res.status(500).json({ errorMessage: "The note information could not be modified"})
         })
-},
+      },
 
 //Notes Post, create new note=================================================================//
 postNote: (req, res) => {

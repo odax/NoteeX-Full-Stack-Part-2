@@ -5,15 +5,27 @@ const NoteRouter = require('./Routes/NoteRoutes');
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 
-const db = require('./data/db.js');
+// const db = require('./data/db.js');
 
 const app = express();
 
-db
-    .connectTo('noteex')
-    .then(() => console.log('\n... API Connected to Database ...'))
-    .catch(err => console.log('/***ERROR Connecting to Database ***\n', err));
+// db
+//     .connectTo('noteex')
+//     .then(() => console.log('\n... API Connected to Database ...'))
+//     .catch(err => console.log('/***ERROR Connecting to Database ***\n', err));
 
+//MLAB connection==========================================================================
+
+const mongoDB = "mongodb://nalee:superman1@ds139920.mlab.com:39920/noteex";
+    
+mongoose.connect(mongoDB, {
+    useMongoClient: true
+});
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+
+//=========================================================================================
 app.use(helmet());
 app.use(cors({}));
 app.use(express.json());
