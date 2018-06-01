@@ -82,8 +82,9 @@ postNote: (req, res) => {
             errorMessage: "Please provide content and a title for this note!"
         });
     }
-    db
-        .insert(newNote)
+    const note = new Note (newNote);
+    note
+        .save(newNote)
         .then(note => {
             res.status(201).json(note);
         })
