@@ -4,16 +4,16 @@ const NoteController = require('../Controllers/NoteController');
 const NoteRouter = express.Router();
 
 //get all Notes
-NoteRouter.get('/', getNotes);
+NoteRouter.get('/', NoteController.getNotes);
 //get Note of specified id
-NoteRouter.get('/:id', getNote);
+NoteRouter.get('/:id', NoteController.getNote);
 //create Note
-NoteRouter.post('/', postNote);
+NoteRouter.post('/', NoteController.postNote);
 //delte Note
-NoteRouter.delete('/:id', removeNote);
+NoteRouter.delete('/:id', NoteController.removeNote);
 //update Note
-NoteRouter.put('/id', updateNote);
+NoteRouter.put('/id', NoteController.updateNote);
 //future: Get note tags
 // NoteRouter.put('/:id/tags', getNoteTags);
 
-export default NoteRouter;
+module.exports = NoteRouter;
