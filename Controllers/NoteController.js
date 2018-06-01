@@ -26,7 +26,7 @@ const NoteController = {
                 if (id === 'undefined') {
                     res.status(404).json({ message: 'The note with the specified ID does not exist.' })
                 } else {
-                    res.status(200).json(note);
+                    res.status(200).json(note); //returns null :/ how to fix?
                 }
             }) 
             .catch(err => {
