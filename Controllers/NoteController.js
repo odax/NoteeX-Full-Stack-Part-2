@@ -1,5 +1,6 @@
 const express = require('express');
 const Note = require('../Models/NoteModel');
+const objectId = require('mongodb').ObjectID;
 const db = express.Router();
 
 const NoteController = {
@@ -58,12 +59,16 @@ const NoteController = {
 
 //note update, update note/note contents==============================================================//
 updateNote: (req, res) => {
-        const id = req.params.id;
-        const update = req.body;
-        const options = {
-          new: true
-        };
-        Note.findByIdAndUpdate(id, update, options)
+        const id = req.body.id;
+        const update1 = {
+            title: req.body.title,
+            content: req.body.content
+        }
+        // const idholder = {"_id": objectId(id)};
+        // const options = {
+        //   new: true
+        // };
+        Note.findOneAndUpdate({title: "meow Note!"}, update1, {returnNewDocument: true})
         .then( note =>
             // note => {
             // if (!note) {

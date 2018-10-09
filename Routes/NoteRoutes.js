@@ -12,7 +12,7 @@ NoteRouter.post('/', NoteController.postNote);
 //delte Note
 NoteRouter.delete('/:id', NoteController.removeNote);
 //update Note
-NoteRouter.put('/id', NoteController.updateNote);
+NoteRouter.put('/:id', NoteController.updateNote);
 //future: Get note tags
 // NoteRouter.put('/:id/tags', getNoteTags);
 
